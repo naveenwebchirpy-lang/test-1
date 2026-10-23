@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 180" preserveAspectRatio="xMidYMid slice">
+<rect width="300" height="180" fill="#e8e9f5"/>
+<circle cx="250" cy="20" r="70" fill="#dcddee"/>
+<rect x="28" y="30" width="244" height="120" rx="14" fill="#fff"/>
+<circle cx="76" cy="76" r="24" fill="none" stroke="#1c2268" stroke-width="9"/>
+<path d="M76 52 A24 24 0 0 1 100 76" fill="none" stroke="#f47b20" stroke-width="9"/>
+<rect x="122" y="52" width="22" height="48" rx="5" fill="#1c2268"/><rect x="148" y="52" width="22" height="48" rx="5" fill="#a9acd6"/><rect x="174" y="52" width="22" height="48" rx="5" fill="#fff" stroke="#d3d5ea"/><rect x="200" y="52" width="22" height="48" rx="5" fill="#f47b20"/>
+<text x="232" y="94" font-family="Nunito, Arial, sans-serif" font-size="34" font-weight="800" fill="#1c2268">Aa</text>
+<rect x="48" y="116" width="120" height="7" rx="3.5" fill="#1c2268" opacity=".85"/><rect x="48" y="130" width="78" height="6" rx="3" fill="#c9cbe6"/>
+</svg>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Thank You · Webchirpy</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0B0B0B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ty-page">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="hdr on-dark" id="top">
+  <div class="wrap hdr-in ty-hdr">
+    <a class="logo" href="index.html" aria-label="Webchirpy home"><img class="logo-dark" src="assets/brand/webchirpy-dark.png" alt="Webchirpy" width="292" height="83"><img class="logo-light" src="assets/brand/webchirpy-light.png" alt="" width="292" height="83"></a>
+  </div>
+</header>
+
+<main id="main" class="final-sec">
+  <section class="final ty" aria-label="Enquiry confirmation and booking">
+    <div class="hero-glow final-glow" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="final-copy">
+      <!-- shown after a confirmed form submission -->
+      <div class="ty-sent" hidden>
+        <span class="ty-ok" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span>
+        <p class="eyebrow">Enquiry received</p>
+        <h1 id="ty-h">Thank You for <em>Your Enquiry!</em></h1>
+        <p class="lead">We've received your details and our team will review your creative requirements shortly. The quickest next step is a short call, so we can understand your brand and recommend the right plan.</p>
+      </div>
+      <!-- shown when the page is opened without a submission -->
+      <div class="ty-direct">
+        <p class="eyebrow">Let's talk</p>
+        <h2>Book a Meeting <em>With Our Team.</em></h2>
+        <p class="lead">Pick a time that suits you and we'll talk through your creative needs and the right plan for your business.</p>
+      </div>
+      <a class="btn btn-or btn-lg ty-cta" href="https://meet.brevo.com/webchirpy-ltd/lets-find-the-right-creative-support-for-your-business">Book a Meeting <svg class="ico"><use href="#i-arrow"/></svg></a>
+      <p class="ty-count" aria-live="polite" hidden></p>
+      <p class="talk"><a href="index.html">Back to home</a></p>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const BOOKING = 'https://meet.brevo.com/webchirpy-ltd/lets-find-the-right-creative-support-for-your-business';
+  // the main page sets this flag only after Tally confirms the submission
+  let sent = false;
+  try {
+    sent = !!sessionStorage.getItem('wc-enquiry-sent');
+    sessionStorage.removeItem('wc-enquiry-sent'); // one confirmation per submission
+  } catch (e) { /* storage blocked: treat as a direct visit */ }
+  if (!sent) return; // direct visit: no confirmation, no auto-redirect
+
+  document.querySelector('.ty-sent').hidden = false;
+  document.querySelector('.ty-direct').hidden = true;
+  const count = document.querySelector('.ty-count');
+  count.hidden = false;
+
+  let left = 5, timer = null, gone = false;
+  const go = () => {
+    if (gone) return;
+    gone = true;
+    clearInterval(timer);
+    window.location.href = BOOKING;
+  };
+  const show = () => { count.textContent = `You'll be redirected to our booking page in ${left} second${left === 1 ? '' : 's'}.`; };
+  show();
+  timer = setInterval(() => {
+    left -= 1;
+    if (left <= 0) go(); else show();
+  }, 1000);
+  // the button goes straight there; stop the timer so it can't fire a second redirect
+  document.querySelector('.ty-cta').addEventListener('click', () => { gone = true; clearInterval(timer); });
+  window.addEventListener('pagehide', () => clearInterval(timer));
+})();
+</script>
+</body>
+</html>
