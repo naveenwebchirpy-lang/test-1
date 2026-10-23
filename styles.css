@@ -1696,3 +1696,6 @@ html.tf-open{overflow:hidden}
 .tfo-btn{margin-top:26px;background:var(--or);color:#fff;box-shadow:0 14px 30px -12px rgba(108,76,246,.85)}
 .tfo-btn:hover{background:var(--deep);color:#fff;transform:translateY(-2px)}
 @media (max-width:720px){ .tfo{min-height:0;padding:52px 20px;border-radius:22px} .tfo-btn{width:100%;max-width:320px} }
+.test{
+  background: #000;
+}
